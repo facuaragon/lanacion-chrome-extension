@@ -3,8 +3,13 @@
     "name":"La Nación",
     "version": "1.0.0",
     "description": "Newtab Chrome Extension",
+    "permissions": ["topSites", "favicon", "geolocation"],
+    "icons":{
+      "16":"favicon.ico",
+      "48":"favicon.ico",
+      "128":"favicon.ico"
+    },
     "chrome_url_overrides": {
         "newtab": "index.html"
-      },
-      "permissions": ["topSites", "favicon", "geolocation"]
+    }
 }
