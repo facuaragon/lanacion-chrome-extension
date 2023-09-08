@@ -1,0 +1,25 @@
+.container-weather{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 94px;
+    .temperature{
+        font-size: 60px;
+        margin-left: 15px;
+        display: flex;
+        .unit{
+            font-size: 20px;
+            align-self: flex-start;
+            margin-top: 9px;
+        }
+    }
+    .extra-data{
+        margin-left: 15px;
+        font-size: 12px;
+        color: rgb(112, 117, 122);
+        .precipprob,.humidity,.wind,.uvindex{
+            padding: 2px;
+        }
+
+    }
+}

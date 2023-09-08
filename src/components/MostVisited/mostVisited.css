@@ -1,0 +1,7 @@
+#mostVisited_div{
+    width: 577px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px auto 0 auto;
+}
