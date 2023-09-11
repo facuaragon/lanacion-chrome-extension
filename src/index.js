@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import Currencies from "./components/Currencies/Currencies";
 import LN_Loader from "./components/LN_Loader/LN_Loader";
+import LatestNews from "./components/LatestNews/LatestNews";
 
 const API_WEATHER = process.env.API_KEY;
 function App() {
@@ -78,6 +79,7 @@ function App() {
       <SearchBar />
       <MostVisited />
       {currencies ? <Currencies currencies={currencies} /> : <LN_Loader />}
+      {/* <LatestNews /> */}
     </>
   );
 }
