@@ -1,6 +1,7 @@
 import React from "react";
 import "./weatherCard.css";
 import WeatherIcons from "../WeatherIcons/WeatherIcons";
+import LN_Loader from "../LN_Loader/LN_Loader";
 
 export default function WeatherCard({ weather }) {
   return (

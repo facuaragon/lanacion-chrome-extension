@@ -55,7 +55,7 @@ font-weight: 400;
     margin-bottom: 1rem;
 }
 
-.ul-list li:nth-child(even) div{
+.ul-list li:nth-child(even) .container{
     border-left: 0.0625rem solid #e4e4e4;
     margin-left: 0;
     padding-left: 2rem;
@@ -73,3 +73,14 @@ font-weight: 400;
     margin-bottom: 0;
     border-bottom: none;
 }
+
+.update{
+    margin-top: 5px
+}
+.update p{
+    font-size: 10px;
+    color: rgb(141, 141, 141);
+    margin: 0;
+    padding: 0;
+}
+

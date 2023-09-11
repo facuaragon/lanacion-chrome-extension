@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import MostVisited from "./components/MostVisited/MostVisited";
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
-import Dolars from "./components/Dolars/Dolars";
+import Currencies from "./components/Currencies/Currencies";
+import LN_Loader from "./components/LN_Loader/LN_Loader";
 
 const API_WEATHER = process.env.API_KEY;
 function App() {
   const [weather, setWeather] = useState();
-  const [dolars, setDolars] = useState();
+  const [currencies, setCurrencies] = useState();
   useEffect(() => {
     // Fetch weather
     navigator.geolocation.getCurrentPosition(
@@ -30,54 +31,56 @@ function App() {
                 }
               })
               .then((data) => {
-                console.log("weather: ", data);
                 setWeather(data.currentConditions);
-                console.log("weather: ", data.currentConditions);
               })
               .catch((error) => {
                 console.log(error);
               });
           };
           fetchWeather();
-
-          //fetch dolar
-          const fetchDolar = () => {
-            fetch("https://dolarapi.com/v1/dolares/")
-              .then((response) => {
-                if (response.ok) {
-                  return response.json();
-                } else {
-                  throw new Error("Error");
-                }
-              })
-              .then((data) => {
-                setDolars(data);
-                console.log("dolar: ", data);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          };
-          fetchDolar();
         }
       },
       function (error) {
-        // Handle errors or if the user denies permission
         console.error("Error getting location: " + error.message);
       }
     );
+    // Fetch Currencies La Nación
+    const fetchCurrencies = () => {
+      fetch(
+        "https://especialess3.lanacion.com.ar/monitor-economia-real/data/cotizaciones_dolar_dia.json"
+      )
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error");
+          }
+        })
+        .then((data) => {
+          console.log("lanacion: ", data);
+          const lanacion = [];
+          const keys = Object.keys(data);
+          const results = keys.map((key) => {
+            const dolar = data[key];
+            lanacion.push(dolar);
+          });
+          setCurrencies(lanacion);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    fetchCurrencies();
   }, []);
   return (
     <>
-      <WeatherCard weather={weather} />
+      {weather ? <WeatherCard weather={weather} /> : <LN_Loader />}
       <SearchBar />
       <MostVisited />
-      {dolars && <Dolars dolars={dolars} />}
+      {currencies ? <Currencies currencies={currencies} /> : <LN_Loader />}
     </>
   );
 }
-
-// render(<App />, document.getElementById("react-target"));
 
 const root = ReactDOM.createRoot(document.getElementById("react-target"));
 root.render(
