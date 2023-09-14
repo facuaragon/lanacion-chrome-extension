@@ -9,17 +9,18 @@ export default function VisitedCard({ visited }) {
   useEffect(() => {
     const rename = () => {
       const split = title.split(" ");
-      if (split[0].length > 13) {
-        const substring = split[0].substring(0, 13);
+      if (title.length > 11) {
+        const substring = title.substring(0, 13);
         setTitle(`${substring}...`);
-      } else {
-        const last = split[0].slice(-1);
-        if (!/[A-Za-z]$/.test(last)) {
-          setTitle(split[0].slice(0, -1));
-        } else {
-          setTitle(split[0]);
-        }
       }
+      // else {
+      //   const last = split[0].slice(-1);
+      //   if (!/[A-Za-z]$/.test(last)) {
+      //     setTitle(split[0].slice(0, -1));
+      //   } else {
+      //     setTitle(split[0]);
+      //   }
+      // }
     };
     rename();
   }, []);
@@ -34,8 +35,11 @@ export default function VisitedCard({ visited }) {
   return (
     <a className="string" href={visited.url}>
       <div className="card">
-        <div className="img">
-          <img src={faviconURL(visited.url)} alt={visited.title} />
+        <div
+          className="img"
+          style={{ backgroundImage: `url(${faviconURL(visited.url)})` }}
+        >
+          {/* <img src={faviconURL(visited.url)} alt={visited.title} /> */}
         </div>
         <div className="link">
           {/* <a className="string" href={visited.url} onClick={onAnchorClick}> */}

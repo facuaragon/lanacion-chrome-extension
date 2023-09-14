@@ -6,11 +6,12 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import WeatherCard from "./components/WeatherCard/WeatherCard";
 import Currencies from "./components/Currencies/Currencies";
 import LN_Loader from "./components/LN_Loader/LN_Loader";
-import LatestNews from "./components/LatestNews/LatestNews";
+import Nav from "./components/Nav/Nav";
 
 const API_WEATHER = process.env.API_KEY;
 function App() {
   const [weather, setWeather] = useState();
+  const [globalweather, setGlobalWeather] = useState();
   const [currencies, setCurrencies] = useState();
   useEffect(() => {
     // Fetch weather
@@ -22,7 +23,7 @@ function App() {
         if (latitude && longitude) {
           const fetchWeather = () => {
             fetch(
-              `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?key=${API_WEATHER}&unitGroup=metric`
+              `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${latitude},${longitude}?key=${API_WEATHER}&unitGroup=metric&lang=es`
             )
               .then((response) => {
                 if (response.ok) {
@@ -33,6 +34,7 @@ function App() {
               })
               .then((data) => {
                 setWeather(data.currentConditions);
+                setGlobalWeather(data);
               })
               .catch((error) => {
                 console.log(error);
@@ -75,11 +77,15 @@ function App() {
   }, []);
   return (
     <>
-      {weather ? <WeatherCard weather={weather} /> : <LN_Loader />}
+      <Nav />
       <SearchBar />
       <MostVisited />
+      {weather ? (
+        <WeatherCard weather={weather} globalweather={globalweather} />
+      ) : (
+        <LN_Loader />
+      )}
       {currencies ? <Currencies currencies={currencies} /> : <LN_Loader />}
-      {/* <LatestNews /> */}
     </>
   );
 }

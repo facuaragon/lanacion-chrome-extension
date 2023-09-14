@@ -19,7 +19,7 @@ function MostVisited() {
   return (
     <>
       <div id="mostVisited_div">
-        {mostVisitedURLs.map((url, index) => (
+        {mostVisitedURLs.slice(0, 5).map((url, index) => (
           <VisitedCard key={index} visited={url} />
         ))}
       </div>

@@ -3,7 +3,7 @@ import "./weatherCard.css";
 import WeatherIcons from "../WeatherIcons/WeatherIcons";
 import LN_Loader from "../LN_Loader/LN_Loader";
 
-export default function WeatherCard({ weather }) {
+export default function WeatherCard({ weather, globalweather }) {
   return (
     <>
       <div className="container-weather">
@@ -11,23 +11,25 @@ export default function WeatherCard({ weather }) {
           <>
             <div className="icon">
               <WeatherIcons
-                height={90}
-                width={90}
+                height={62.29}
+                width={62.29}
                 fill={"#000"}
                 name={weather.icon}
               />
             </div>
-            <div className="temperature">
-              {weather.temp}
-              <span className="unit">°C</span>
-            </div>
-            <div className="extra-data">
-              <div className="precipprob">{`Prob. de Precipitaciones: ${weather.precipprob}%`}</div>
-              <div className="humidity">{`Humedad: ${Math.round(
-                weather.humidity
-              )}%`}</div>
-              <div className="wind">{`Viento: ${weather.windspeed} km/h`}</div>
-              <div className="uvindex">{`Índice UV: ${weather.uvindex}`}</div>
+            <div className="weather-title">CLIMA</div>
+
+            <div className="group">
+              <div className="temp">{`${weather.temp}°`}</div>
+              <div className="weatherLine">
+                <div className="currentCondition">{weather.conditions}</div>
+                <div className="separator">•</div>
+                <div className="temperatures">
+                  MAX: {globalweather.days[0].tempmax}° MIN:{" "}
+                  {globalweather.days[0].tempmax}°
+                </div>
+              </div>
+              <div className="location">Buenos Aires</div>
             </div>
           </>
         )}
