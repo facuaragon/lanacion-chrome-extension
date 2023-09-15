@@ -19,6 +19,8 @@ function App() {
       function (position) {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
+        console.log("latitude: ", latitude);
+        console.log("longitude: ", longitude);
 
         if (latitude && longitude) {
           const fetchWeather = () => {
@@ -60,14 +62,14 @@ function App() {
           }
         })
         .then((data) => {
-          console.log("lanacion: ", data);
-          const lanacion = [];
-          const keys = Object.keys(data);
-          const results = keys.map((key) => {
-            const dolar = data[key];
-            lanacion.push(dolar);
-          });
-          setCurrencies(lanacion);
+          // console.log("lanacion: ", data);
+          // const lanacion = [];
+          // const keys = Object.keys(data);
+          // const results = keys.map((key) => {
+          //   const dolar = data[key];
+          //   lanacion.push(dolar);
+          // });
+          setCurrencies(data);
         })
         .catch((error) => {
           console.log(error);

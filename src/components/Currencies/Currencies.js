@@ -1,18 +1,32 @@
 import React from "react";
 import "./currencies.css";
-import CurrencyCard from "../CurrencyCard/CurrencyCard";
 
 export default function Currencies({ currencies }) {
+  // console.log(currencies);
+  const dolarOficial = {
+    name: "DÓLAR OFICIAL",
+    value: currencies["dolar_minorista"]?.venta.split(",")[0],
+  };
+  const dolarBlue = {
+    name: "DÓLAR BLUE",
+    value: currencies["dolar_blue"]?.venta.split(",")[0],
+  };
+  // console.log(dolarOficial);
+  // console.log(dolarBlue);
   return (
     <>
-      <div className="container-dolars">
-        <ul className="ul-list">
-          {currencies.map((currency, i) => (
-            <li key={i}>
-              <CurrencyCard currency={currency} />
-            </li>
-          ))}
-        </ul>
+      <div className="container-currencies">
+        <div className="currencies-title">COTIZACIÓN</div>
+        <div>
+          <div>
+            <div className="currency-exchange">${dolarOficial.value}</div>
+            <div className="currency-name">{dolarOficial.name}</div>
+          </div>
+          <div>
+            <div className="currency-exchange2">${dolarBlue.value}</div>
+            <div className="currency-name2">{dolarBlue.name}</div>
+          </div>
+        </div>
       </div>
     </>
   );

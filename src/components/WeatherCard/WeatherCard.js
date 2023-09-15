@@ -4,6 +4,8 @@ import WeatherIcons from "../WeatherIcons/WeatherIcons";
 import LN_Loader from "../LN_Loader/LN_Loader";
 
 export default function WeatherCard({ weather, globalweather }) {
+  console.log("current weather", weather);
+  console.log("extended weather", globalweather);
   return (
     <>
       <div className="container-weather">
@@ -22,11 +24,15 @@ export default function WeatherCard({ weather, globalweather }) {
             <div className="group">
               <div className="temp">{`${weather.temp}°`}</div>
               <div className="weatherLine">
-                <div className="currentCondition">{weather.conditions}</div>
+                <div className="currentCondition">
+                  {weather.conditions === "Claro"
+                    ? "Despejado"
+                    : weather.conditions}
+                </div>
                 <div className="separator">•</div>
                 <div className="temperatures">
                   MAX: {globalweather.days[0].tempmax}° MIN:{" "}
-                  {globalweather.days[0].tempmax}°
+                  {globalweather.days[0].tempmin}°
                 </div>
               </div>
               <div className="location">Buenos Aires</div>
