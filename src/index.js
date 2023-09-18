@@ -34,6 +34,7 @@ function App() {
                   throw new Error("Error");
                 }
               })
+
               .then((data) => {
                 setWeather(data.currentConditions);
                 setGlobalWeather(data);
